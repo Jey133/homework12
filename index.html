@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>homework12</title>
+
+	<style>
+		.title{
+			margin: 30px 0;
+		}
+		.content{
+			display: none;
+		}
+		.is-active{
+			font-weight: bold;
+		}
+		.is-active + .content{
+			display: block;
+		}
+	</style>
+</head>
+<body>
+
+<div class="tooltip" data-tooltip="Текст для всплывающей подсказки.">
+  Наведи курсор на меня ;)
+</div>
+
+<div class="container">
+	<div class="box">
+		<div class="title">Title1</div>
+		<div class="content">
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat minus, dolorum facilis, neque non nemo eligendi, voluptatibus ullam adipisci, laudantium illo omnis modi magnam! Similique ipsa exercitationem necessitatibus ducimus cum?
+		</div>
+	</div>
+	<div class="box">
+		<div class="title">Title2</div>
+		<div class="content">
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem, asperiores ipsam nemo placeat eum dolore similique blanditiis consectetur quibusdam, tempore, sapiente quisquam facere deserunt doloribus quidem, earum voluptatem possimus pariatur.
+		</div>
+	</div>
+	<div class="box">
+		<div class="title">Title3</div>
+		<div class="content">
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo voluptate dolore, consequuntur deserunt, atque beatae, nam aliquam ipsa natus perferendis omnis officia minus vero repellendus, neque ratione culpa unde corporis?
+		</div>
+	</div>
+</div>
+
+<script>
+
+function initTooltip(){
+	const $tooltip = document.querySelector('.tooltip');
+	$tooltip.addEventListener('mouseover', (e) => {
+		const $newSpan = document.createElement('span');
+		$newSpan.textContent = e.target.dataset.tooltip;
+		$newSpan.className = 'tooltip-content';
+		e.target.append($newSpan);
+	});
+	$tooltip.addEventListener('mouseout', (e) => {
+		e.target.querySelector('.tooltip-content'). remove();
+	});
+}
+initTooltip();
+
+function initContent() {
+	const $container = document.querySelector('.container');
+	$container.addEventListener('click', (e) => {
+			e.target.classList.toggle('is-active');
+	});
+}
+initContent();
+
+</script>
+	
+</body>
+</html>
