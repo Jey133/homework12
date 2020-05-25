@@ -48,27 +48,37 @@
 
 <script>
 
-function initTooltip(){
-	const $tooltip = document.querySelector('.tooltip');
-	$tooltip.addEventListener('mouseover', (e) => {
-		const $newSpan = document.createElement('span');
-		$newSpan.textContent = e.target.dataset.tooltip;
-		$newSpan.className = 'tooltip-content';
-		e.target.append($newSpan);
-	});
-	$tooltip.addEventListener('mouseout', (e) => {
-		e.target.querySelector('.tooltip-content'). remove();
-	});
-}
-initTooltip();
+const $tooltip = document.querySelectorAll('.tooltip');	
 
-function initContent() {
-	const $container = document.querySelector('.container');
-	$container.addEventListener('click', (e) => {
-			e.target.classList.toggle('is-active');
-	});
+function initTooltip(hoverArr) {
+	hoverArr.forEach(tooltip =>
+		tooltip.addEventListener('mouseover', (e) => {
+			const $newSpan = document.createElement('span');
+			$newSpan.textContent = e.target.dataset.tooltip;
+			$newSpan.className = 'tooltip-content';
+			e.target.append($newSpan);
+		})
+	)
+	hoverArr.forEach(tooltip => 
+		tooltip.addEventListener('mouseout', (e) => {
+			e.target.querySelector('.tooltip-content').remove();
+		})
+	)	
 }
-initContent();
+
+initTooltip($tooltip);
+
+const $title = document.querySelectorAll('.title');
+
+function initContent(targetArr) {
+	targetArr.forEach(title => 
+		title.addEventListener('click', (e) => {
+			e.target.classList.toggle('is-active');
+		})
+	)
+}
+
+initContent($title);
 
 </script>
 	
